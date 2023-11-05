@@ -13,7 +13,8 @@ library(RCurl)
 library(randomForest)
 
 # Read data
-weather <- read.csv(text = getURL("https://raw.githubusercontent.com/dataprofessor/data/master/weather-weka.csv") )
+url <- "https://raw.githubusercontent.com/dataprofessor/data/master/weather-weka.csv"
+weather <- readr::read_csv(getURL(url), col_types = "fiilf")
 
 # Build model
 model <- randomForest(play ~ ., data = weather, ntree = 500, mtry = 4, importance = TRUE)
